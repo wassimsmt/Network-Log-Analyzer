@@ -1,0 +1,47 @@
+Here is the SOC analysis based strictly on the provided logs :
+
+Suspicious activity
+- Multiple consecutive failed login attempts for user admin from IP 192.168.1.45
+- Followed by a successful login from the same IP shortly after
+- Repeated connection attempts to port 3389 (RDP) from external IP 203.0.113.17
+- Creation of a new guest account
+
+Possible explanation
+- The failed logins followed by success indicate a possible brute-force or password guessing attack
+- The RDP connection attempts suggest external reconnaissance or an attempt to gain remote access
+- The creation of a guest account after login may indicate unauthorized access and persistence mechanism
+- It is possible (but not confirmed) that the admin account was compromised
+
+Threat level
+High
+
+Reasoning:
+
+- Successful login after multiple failures
+- External RDP probing
+- Account creation activity (potential persistence)
+
+Recommended action
+1. Immediately disable or lock the admin account
+2. Reset passwords for all privileged accounts
+3. Investigate IP 192.168.1.45
+   - Identify the device/user
+   - Check if it is legitimate or compromised
+4. Block or restrict IP 203.0.113.17
+5. Disable or review the newly created guest account
+6. Check system logs for further suspicious activity
+   - File access
+   - Privilege escalation
+   - Lateral movement
+7. Enable account lockout policies (if not already configured)
+8. Restrict RDP access
+   - Use VPN or allowlist trusted IPs only
+
+Confidence level
+Medium
+
+Reason:
+
+- The pattern strongly suggests malicious activity
+- However, there is no direct confirmation (e.g., malware execution, data exfiltration logs)
+- Some actions could still be legitimate administrative behavior, but unlikely given the sequence

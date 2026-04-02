@@ -1,0 +1,42 @@
+Security Incident Report
+
+Incident Title: Suspected Brute-Force Attack and Unauthorized Access
+Date: 2026-04-01
+Source: System Authentication & Network Logs
+
+1. Summary
+A sequence of failed authentication attempts followed by a successful login to the admin account was observed from an internal IP address. Concurrently, repeated external connection attempts targeting RDP (port 3389) were detected. Shortly after, a new guest account was created. The activity indicates a potential compromise and unauthorized system access.
+
+2. Observed Activity
+- Multiple failed login attempts for admin from 192.168.1.45
+- Successful login for admin from the same IP
+- Repeated inbound connection attempts to port 3389 (RDP) from 203.0.113.17
+- Creation of a guest account
+
+3. Analysis
+- The authentication pattern suggests a brute-force or password guessing attack
+- The successful login raises concern of credential compromise
+- External RDP probing indicates potential reconnaissance or access attempts
+- The creation of a new account suggests possible persistence establishment
+
+4. Impact Assessment
+- Risk Level: High
+- Potential unauthorized access to privileged account
+- Risk of lateral movement and further system compromise
+
+5. Recommended Actions
+1. Disable or lock the admin account immediately
+2. Reset credentials for all privileged users
+3. Investigate host associated with 192.168.1.45
+4. Block or restrict traffic from 203.0.113.17
+5. Review and disable the newly created guest account
+6. Conduct full log review for:
+   - Privilege escalation
+   - Lateral movement
+   - Data access or exfiltration
+7. Enforce account lockout policies
+8. Restrict RDP access (VPN or IP allowlisting)
+
+6. Confidence Level
+Medium
+The activity strongly aligns with known attack patterns; however, confirmation of full compromise requires further investigation.

@@ -1,0 +1,1 @@
+Analyze these logs as a SOC analyst. Identify: - suspicious patterns - possible attack type - threat level - recommended actions Use the exact format defined in the instructions.
